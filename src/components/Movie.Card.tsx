@@ -27,8 +27,8 @@ const MovieCard: React.FC<Props> = ({item}) => {
                 cover={
                 <img
                     alt="cover"
-                    className='!h-74'
-                    src={`${import.meta.env.VITE_COVER_PREVIEW}/${item?.poster_path || ""}`}
+                    className='!h-44'
+                    src={`${import.meta.env.VITE_COVER_PREVIEW}/${item?.backdrop_path || item?.poster_path || ""}`}
                 />
                 }
                 actions={[
