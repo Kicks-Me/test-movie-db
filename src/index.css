@@ -1,0 +1,150 @@
+@import "tailwindcss";
+body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+code {
+    font-family: source-code-pro,Menlo,Monaco,Consolas,"Courier New",monospace
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box
+}
+
+.Header {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    align-items: center;
+    width: 100vw;
+    background-color: #080131;
+    border-bottom: 2px solid #fff;
+    height: 50px;
+    position: fixed;
+    padding: 5px 10px;
+    z-index: 99
+}
+
+#logo img {
+    margin-top: 3px;
+    width: 120px;
+    height: 30px
+}
+
+.author {
+    font-size: 20px;
+    color: #fff;
+    font-weight: bolder;
+    margin-right: 25px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-content: center;
+    align-content: center;
+    -webkit-justify-content: space-between;
+    justify-content: space-between
+}
+
+.author img {
+    margin-left: 15px
+}
+
+.row {
+    margin: 0 15px 20px;
+    cursor: pointer
+}
+
+.posters {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+
+.row-h2 {
+    margin: 10px
+}
+
+.poster {
+    width: 150px;
+    height: 180px;
+    max-height: 200px;
+    margin: 7px;
+    border-radius: 5px;
+    transition: -webkit-transform .5s;
+    transition: transform .5s;
+    transition: transform .5s,-webkit-transform .5s
+}
+
+.poster:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05)
+}
+
+.Banner {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 100px 5px 5px
+}
+
+.Banner img {
+    margin-top: 45px;
+    width: 100%;
+    height: 350px
+}
+
+.Banner h2 {
+    top: 100px;
+    left: 50px
+}
+
+.Banner h2,.Banner p {
+    position: absolute;
+    color: #fff
+}
+
+.Banner p {
+    top: 140px;
+    left: 55px;
+    width: 400px;
+    height: 300px;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-content: center;
+    align-content: center;
+    z-index: 1
+}
+
+.popup-inner {
+    position: relative;
+    padding: 30px;
+    width: 650px;
+    height: 350px
+}
+
+.close-popup {
+    position: absolute;
+    top: 20px;
+    right: 20px
+}
+
+/*# sourceMappingURL=main.63e845f3.chunk.css.map */
