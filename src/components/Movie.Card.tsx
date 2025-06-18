@@ -4,6 +4,7 @@ import { Button, Card, Col, Rate, Typography } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import { useNavigate } from 'react-router-dom';
 import MovieModal from './MovieModal';
+import MovieDetail from './ModalDetail';
 
 interface Props {
     item: IResult | null;
@@ -14,14 +15,16 @@ const MovieCard: React.FC<Props> = ({item}) => {
     const [showMovie, setShowMovie] = useState<{
         isOpen: boolean;
         data: IResult | null;
+        type: 'play' | 'view' | 'none'
     }>({
         isOpen: false,
         data: null,
+        type: 'none'
     });
 
   return (
     <>
-        <Col xs={24} sm={24} md={8} lg={6} onClick={()=>setShowMovie({isOpen: true, data: item || null})}>
+        <Col xs={24} sm={24} md={8} lg={6} onClick={()=>setShowMovie({isOpen: true, data: item || null, type: 'play'})}>
             <Card
                 className='!w-full'
                 cover={
@@ -33,7 +36,14 @@ const MovieCard: React.FC<Props> = ({item}) => {
                 }
                 actions={[
                 <Rate allowHalf disabled value={Math.round(item?.vote_average || 2)} defaultValue={2} count={5}/>,
-                <Button type='text' variant='outlined' className='!text-sky-600'>Read more</Button>
+                <Button type='text' variant='outlined' onClick={(e)=>{
+                    e.stopPropagation();
+                    setShowMovie({
+                        isOpen: true,
+                        data: item,
+                        type: 'view'
+                    });
+                }} className='!text-sky-600'>Read more</Button>
                 ]}
             >
                 <Meta
@@ -42,7 +52,8 @@ const MovieCard: React.FC<Props> = ({item}) => {
                 />
             </Card>
         </Col>
-        <MovieModal isOpen={showMovie.isOpen} data={showMovie?.data} onClose={()=>setShowMovie({isOpen: false, data: null})}/>
+        <MovieDetail  isOpen={showMovie.isOpen && showMovie.type === 'view'} data={showMovie?.data} onClose={()=>setShowMovie({isOpen: false, data: null, type:'none'})}/>
+        <MovieModal isOpen={showMovie.isOpen && showMovie.type === 'play'} data={showMovie?.data} onClose={()=>setShowMovie({isOpen: false, data: null, type:'none'})}/>
     </>
   )
 }

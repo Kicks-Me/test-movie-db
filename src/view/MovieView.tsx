@@ -90,7 +90,7 @@ useEffect(() => {
           )}
         </Row>
         {totalItems > 0 && (
-          <Flex justify="center" className="!mt-6">
+          <Flex justify="center" className="!my-7">
             <Pagination
               current={currentPage}
               pageSize={pageSize}

@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import type { IResult } from '../interface/mv.type'
-import { Modal, Typography } from 'antd';
+import { Flex, Modal, Typography } from 'antd';
 import type { YouTubeProps } from 'react-youtube';
 import YouTube from 'react-youtube';
 import { Content } from 'antd/es/layout/layout';
 import movieTrailer from 'movie-trailer'
-import { CloseOutlined } from '@ant-design/icons';
 
 interface Props {
     isOpen: boolean;
@@ -13,7 +12,7 @@ interface Props {
     data: IResult | null;
 }
 
-const MovieModal: React.FC<Props> = ({isOpen, onClose, data}) => {
+const MovieDetail: React.FC<Props> = ({isOpen, onClose, data}) => {
 
   const [TrailerURL, setTrailerURL] = useState<string>("");
     const onPlayerReady: YouTubeProps['onReady'] = (event) => {
@@ -21,8 +20,8 @@ const MovieModal: React.FC<Props> = ({isOpen, onClose, data}) => {
     }
 
     const opts = {
-        height: '600',
-        width: '1000',
+        height: '300',
+        width: '500',
         playerVars: {
             autoplay: 1,
         },
@@ -38,33 +37,26 @@ const MovieModal: React.FC<Props> = ({isOpen, onClose, data}) => {
   return (
     <Modal
         open={isOpen}
-        width={1050}
+        width={'50%'}
         onCancel={onClose}
         footer={null}
-        styles={{
-            content: { background: 'transparent', boxShadow: 'none' }, 
-        }}
-        closeIcon={
-            <span
-                style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: '50%',
-                    background: 'rgba(0,0,0,0.6)', 
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer'
-                }}
-            >
-                <CloseOutlined style={{ color: '#fff', fontSize: 16 }} />
-            </span>
-        }
     >
-        <Content className='!mt-2'>
+
+        <Flex vertical justify='space-between !py-5 !mb-10'>
+            <Content>
+            <Typography.Title level={3}>
+            {data?.title}
+            </Typography.Title>
+        </Content>
+        <Content className='!mt-7'>
             <YouTube videoId={TrailerURL} opts={opts} onReady={onPlayerReady} className='!rounded-md !w-full'/>
         </Content>
+        </Flex>
+        <div style={{height: 80}}/>
+        <Typography.Text className='!mt-20'>
+            {data?.overview}
+        </Typography.Text>
     </Modal>
   )
 }
-export default MovieModal;
+export default MovieDetail;
